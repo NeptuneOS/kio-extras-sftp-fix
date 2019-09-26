@@ -1,0 +1,10 @@
+--- kio-extras-18.08.3.orig/sftp/kio_sftp.cpp
++++ kio-extras-18.08.3/sftp/kio_sftp.cpp
+@@ -928,6 +928,7 @@ void sftpProtocol::closeConnection() {
+ 
+   if (mSession) {
+     ssh_disconnect(mSession);
++    ssh_free(mSession);
+     mSession = nullptr;
+   }
+ 

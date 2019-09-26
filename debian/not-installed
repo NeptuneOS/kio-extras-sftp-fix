@@ -1,0 +1,6 @@
+usr/include/KF5/kio_archivebase.h
+usr/include/KF5/libkioarchive_export.h
+usr/lib/*/cmake/KioArchive/KioArchiveConfig.cmake
+usr/lib/*/cmake/KioArchive/KioArchiveConfigVersion.cmake
+usr/lib/*/cmake/KioArchive/KioArchiveTargets.cmake
+usr/lib/*/cmake/KioArchive/KioArchiveTargets-debian.cmake

@@ -1,0 +1,17 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+
+l10npkgs_firstversion_ok := 4:16.04.3-7~
+
+include /usr/share/pkg-kde-tools/qt-kde-team/3/debian-qt-kde.mk
+include /usr/share/pkg-kde-tools/qt-kde-team/2/l10n-packages.mk
+
+override_dh_strip:
+	$(overridden_command) --dbgsym-migration='kio-extras-dbg (<= 4:15.12.1-1~~)'
+
+override_dh_auto_test:
+	# Tests require a registered logind session. :/
+	# If you are reading this, your help is needed to make this work in
+	# a reproduceable way either in the buildds or in the autopkgtests
+	# servers
+	# xvfb-run -a dh_auto_test

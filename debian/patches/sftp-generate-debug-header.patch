@@ -1,0 +1,107 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 9a152b1..4349884 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -53,6 +53,7 @@ include(KDECompilerSettings NO_POLICY_SCOPE)
+ include(ECMMarkNonGuiExecutable)
+ include(ECMMarkAsTest)
+ include(ECMOptionalAddSubdirectory)
++include(ECMQtDeclareLoggingCategory)
+ 
+ add_definitions(-DQT_NO_URL_CAST_FROM_STRING)
+ 
+diff --git a/sftp/CMakeLists.txt b/sftp/CMakeLists.txt
+index 5e8d2cb..c3252ff 100644
+--- a/sftp/CMakeLists.txt
++++ b/sftp/CMakeLists.txt
+@@ -2,7 +2,14 @@ add_definitions(-DTRANSLATION_DOMAIN=\"kio5_sftp\")
+ 
+ include_directories(${LIBSSH_INCLUDE_DIR})
+ 
+-add_library(kio_sftp MODULE kio_sftp.cpp kio_smtp_debug.cpp)
++set(kio_sftp_SRCS kio_sftp.cpp)
++
++ecm_qt_declare_logging_category(kio_sftp_SRCS
++    HEADER kio_sftp_debug.h
++    IDENTIFIER KIO_SFTP_LOG
++    CATEGORY_NAME log_kio_sftp)
++
++add_library(kio_sftp MODULE ${kio_sftp_SRCS})
+ target_link_libraries(kio_sftp
+    KF5::KIOCore
+    KF5::WidgetsAddons # KMessageBox
+diff --git a/sftp/kio_sftp.cpp b/sftp/kio_sftp.cpp
+index e7a5485..bdd89ba 100644
+--- a/sftp/kio_sftp.cpp
++++ b/sftp/kio_sftp.cpp
+@@ -22,7 +22,7 @@
+ #include "kio_sftp.h"
+ 
+ #include <config-runtime.h>
+-#include "kio_smtp_debug.h"
++#include "kio_sftp_debug.h"
+ #include <cerrno>
+ #include <cstring>
+ #include <utime.h>
+diff --git a/sftp/kio_smtp_debug.cpp b/sftp/kio_smtp_debug.cpp
+deleted file mode 100644
+index 6570309..0000000
+--- a/sftp/kio_smtp_debug.cpp
++++ /dev/null
+@@ -1,23 +0,0 @@
+-/*  This file is part of the KDE project
+-    Copyright (C) 2014 Laurent Montel <montel@kde.org>
+-
+-    This library is free software; you can redistribute it and/or
+-    modify it under the terms of the GNU Library General Public
+-    License as published by the Free Software Foundation; either
+-    version 2 of the License, or (at your option) any later version.
+-
+-    This library is distributed in the hope that it will be useful,
+-    but WITHOUT ANY WARRANTY; without even the implied warranty of
+-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+-    Library General Public License for more details.
+-
+-    You should have received a copy of the GNU Library General Public License
+-    along with this library; see the file COPYING.LIB.  If not, write to
+-    the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+-    Boston, MA 02110-1301, USA.
+-*/
+-
+-#include "kio_smtp_debug.h"
+-Q_LOGGING_CATEGORY(KIO_SFTP_LOG, "log_kio_sftp")
+-
+-
+diff --git a/sftp/kio_smtp_debug.h b/sftp/kio_smtp_debug.h
+deleted file mode 100644
+index 4e91dc1..0000000
+--- a/sftp/kio_smtp_debug.h
++++ /dev/null
+@@ -1,27 +0,0 @@
+-/*  This file is part of the KDE project
+-    Copyright (C) 2014 Laurent Montel <montel@kde.org>
+-
+-    This library is free software; you can redistribute it and/or
+-    modify it under the terms of the GNU Library General Public
+-    License as published by the Free Software Foundation; either
+-    version 2 of the License, or (at your option) any later version.
+-
+-    This library is distributed in the hope that it will be useful,
+-    but WITHOUT ANY WARRANTY; without even the implied warranty of
+-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+-    Library General Public License for more details.
+-
+-    You should have received a copy of the GNU Library General Public License
+-    along with this library; see the file COPYING.LIB.  If not, write to
+-    the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+-    Boston, MA 02110-1301, USA.
+-*/
+-
+-#ifndef KIO_SMTP_DEBUG_H
+-#define KIO_SMTP_DEBUG_H
+-
+-#include <QLoggingCategory>
+-Q_DECLARE_LOGGING_CATEGORY(KIO_SFTP_LOG)
+-
+-#endif 
+-

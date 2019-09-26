@@ -1,0 +1,91 @@
+Index: kio-extras-18.08.3/sftp/kio_sftp.cpp
+===================================================================
+--- kio-extras-18.08.3.orig/sftp/kio_sftp.cpp	2019-09-15 16:43:58.995420978 +0200
++++ kio-extras-18.08.3/sftp/kio_sftp.cpp	2019-09-15 16:43:58.991421000 +0200
+@@ -1050,7 +1050,7 @@
+     bytesRead = sftp_read(mOpenFile, buffer.data(), bytesRequested);
+     if (bytesRead < 0) {
+       error(KIO::ERR_COULD_NOT_READ, mOpenUrl.toDisplayString());
+-      close();
++      closeWithoutFinish();
+       return;
+     } else {
+       QByteArray fileData = QByteArray::fromRawData(buffer.data(), bytesRead);
+@@ -1085,7 +1085,7 @@
+   if (bytesRead < 0) {
+     qCDebug(KIO_SFTP_LOG) << "Could not read " << mOpenUrl;
+     error(KIO::ERR_COULD_NOT_READ, mOpenUrl.toDisplayString());
+-    close();
++    closeWithoutFinish();
+     return;
+   }
+ 
+@@ -1103,7 +1103,7 @@
+   if (bytesWritten < 0) {
+     qCDebug(KIO_SFTP_LOG) << "Could not write to " << mOpenUrl;
+     error(KIO::ERR_COULD_NOT_WRITE, mOpenUrl.toDisplayString());
+-    close();
++    closeWithoutFinish();
+     return;
+   }
+ 
+@@ -1118,7 +1118,8 @@
+ 
+   if (sftp_seek64(mOpenFile, static_cast<uint64_t>(offset)) < 0) {
+     error(KIO::ERR_COULD_NOT_SEEK, mOpenUrl.path());
+-    close();
++    closeWithoutFinish();
++    return;
+   }
+ 
+   position(sftp_tell64(mOpenFile));
+@@ -1126,9 +1127,7 @@
+ }
+ 
+ void sftpProtocol::close() {
+-  sftp_close(mOpenFile);
+-
+-  mOpenFile = nullptr;
++  closeWithoutFinish();
+   finished();
+ }
+ 
+@@ -1784,9 +1783,8 @@
+ 
+   // open() feeds the mimetype
+   open(url, QIODevice::ReadOnly);
+-  close();
+-
+-  finished();
++  // open() finished(), don't finish in close again.
++  closeWithoutFinish();
+ }
+ 
+ void sftpProtocol::listDir(const QUrl& url) {
+@@ -2264,6 +2262,12 @@
+   }
+ }
+ 
++void sftpProtocol::closeWithoutFinish()
++{
++  sftp_close(mOpenFile);
++  mOpenFile = nullptr;
++}
++
+ void sftpProtocol::clearPubKeyAuthInfo()
+ {
+   if (mPublicKeyAuthInfo) {
+Index: kio-extras-18.08.3/sftp/kio_sftp.h
+===================================================================
+--- kio-extras-18.08.3.orig/sftp/kio_sftp.h	2019-09-15 16:43:58.995420978 +0200
++++ kio-extras-18.08.3/sftp/kio_sftp.h	2019-09-15 16:43:58.991421000 +0200
+@@ -196,6 +196,9 @@
+   bool sftpOpenConnection(const KIO::AuthInfo&);
+   void sftpSendWarning(int errorCode, const QString& url);
+ 
++  // Close without error() or finish() call (in case of errors for example)
++  void closeWithoutFinish();
++
+   /**
+     * Status Code returned from ftpPut() and ftpGet(), used to select
+     * source or destination url for error messages

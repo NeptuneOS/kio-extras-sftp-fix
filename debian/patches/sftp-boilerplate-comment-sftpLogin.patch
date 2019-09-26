@@ -1,0 +1,84 @@
+Index: kio-extras-18.08.3/sftp/kio_sftp.cpp
+===================================================================
+--- kio-extras-18.08.3.orig/sftp/kio_sftp.cpp	2019-09-15 16:44:56.287094903 +0200
++++ kio-extras-18.08.3/sftp/kio_sftp.cpp	2019-09-15 16:44:56.283094926 +0200
+@@ -979,6 +979,7 @@
+   qCDebug(KIO_SFTP_LOG) << "open: " << url;
+ 
+   if (!sftpLogin()) {
++    // sftpLogin finished()
+     return;
+   }
+ 
+@@ -1730,6 +1731,7 @@
+   qCDebug(KIO_SFTP_LOG) << url;
+ 
+   if (!sftpLogin()) {
++    // sftpLogin finished()
+     return;
+   }
+ 
+@@ -1778,6 +1780,7 @@
+   qCDebug(KIO_SFTP_LOG) << url;
+ 
+   if (!sftpLogin()) {
++    // sftpLogin finished()
+     return;
+   }
+ 
+@@ -1791,6 +1794,7 @@
+   qCDebug(KIO_SFTP_LOG) << "list directory: " << url;
+ 
+   if (!sftpLogin()) {
++    // sftpLogin finished()
+     return;
+   }
+ 
+@@ -1928,6 +1932,7 @@
+   qCDebug(KIO_SFTP_LOG) << "create directory: " << url;
+ 
+   if (!sftpLogin()) {
++    // sftpLogin finished()
+     return;
+   }
+ 
+@@ -1979,6 +1984,7 @@
+   qCDebug(KIO_SFTP_LOG) << "rename " << src << " to " << dest << flags;
+ 
+   if (!sftpLogin()) {
++    // sftpLogin finished()
+     return;
+   }
+ 
+@@ -2026,6 +2032,7 @@
+                       << ", resume = " << (flags & KIO::Resume);
+ 
+   if (!sftpLogin()) {
++    // sftpLogin finished()
+     return;
+   }
+ 
+@@ -2063,6 +2070,7 @@
+   qCDebug(KIO_SFTP_LOG) << "change permission of " << url << " to " << QString::number(permissions);
+ 
+   if (!sftpLogin()) {
++    // sftpLogin finished()
+     return;
+   }
+ 
+@@ -2080,6 +2088,7 @@
+   qCDebug(KIO_SFTP_LOG) << "deleting " << (isfile ? "file: " : "directory: ") << url;
+ 
+   if (!sftpLogin()) {
++    // sftpLogin finished()
+     return;
+   }
+ 
+@@ -2281,6 +2290,7 @@
+   qCDebug(KIO_SFTP_LOG) << "file system free space of" << url;
+ 
+   if (!sftpLogin()) {
++    // sftpLogin finished()
+     return;
+   }
+ 

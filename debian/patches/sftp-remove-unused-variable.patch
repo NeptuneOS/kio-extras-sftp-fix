@@ -1,0 +1,21 @@
+
+Index: kio-extras-18.08.3/sftp/kio_sftp.cpp
+===================================================================
+--- kio-extras-18.08.3.orig/sftp/kio_sftp.cpp	2019-09-15 16:41:27.724280698 +0200
++++ kio-extras-18.08.3/sftp/kio_sftp.cpp	2019-09-15 16:41:27.720280721 +0200
+@@ -337,7 +337,6 @@
+ 
+ bool sftpProtocol::createUDSEntry(const QString &filename, const QByteArray &path,
+       UDSEntry &entry, short int details) {
+-  mode_t type;
+   mode_t access;
+   char *link;
+   bool isBrokenLink = false;
+@@ -1826,7 +1825,6 @@
+ 
+   for (;;) {
+     mode_t access;
+-    mode_t type;
+     char *link;
+     bool isBrokenLink = false;
+     long long fileType = S_IFREG;

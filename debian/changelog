@@ -1,0 +1,429 @@
+kio-extras (4:18.08.3-1neptune1) buster; urgency=medium
+
+  * Added sftp patches:
+    fix-memory-leak-ssh-session.patch
+    sftp-generate-debug-header.patch
+    sftp-remove-unused-macros.patch
+    sftp-replace-memset-hack-with-cpp.patch
+    sftp-use-qenvironmentvariable.patch
+    sftp-treat-all-errors-as-errors.patch
+    sftp-use-uds-fastinsert-instead-of-old.patch
+    sftp-bump-pending-requests-to-128.patch
+    sftp-remove-unused-variable.patch
+    sftp-use-tcp-nodelay.patch
+    sftp-be-backwards-compatible.patch
+    sftp-always-emit-finished-on-completion.patch
+    sftp-do-not-multifinish-on-close-calls.patch
+    sftp-boilerplate-comment-sftpLogin.patch
+    sftp-simplify-isDir-handling.patch
+
+ -- Leszek Lesner <leszek@zevenos.com>  Sun, 15 Sep 2019 16:24:25 +0200
+
+kio-extras (4:18.08.3-1) unstable; urgency=medium
+
+  * Team upload.
+  * New upstream release.
+  * Disable the HTML thumbnailer: (CVE-2018-19120) (Closes: #913595)
+    - remove the qtwebengine5-dev build dependency
+
+ -- Pino Toscano <pino@debian.org>  Mon, 12 Nov 2018 23:27:05 +0100
+
+kio-extras (4:18.08.1-1) unstable; urgency=medium
+
+  * Team upload.
+  * New upstream release.
+  * Fix Vcs-Git field.
+
+ -- Pino Toscano <pino@debian.org>  Sat, 08 Sep 2018 08:41:30 +0200
+
+kio-extras (4:18.08.0-1) unstable; urgency=medium
+
+  * Team upload.
+  * Upload to unstable.
+  * New upstream release.
+  * Bump Standards-Version to 4.2.1, no changes required.
+  * Update lintian overrides.
+
+ -- Pino Toscano <pino@debian.org>  Thu, 06 Sep 2018 08:23:20 +0200
+
+kio-extras (4:18.04.3-1) experimental; urgency=medium
+
+  * New upstream release (18.04.3).
+  * Update build-deps and deps with the info from cmake
+  * Bump to Standards-Version 4.1.4
+  * Update Vcs fields
+  * Update copyright information
+  * Update install files
+  * Release to experimental
+
+ -- Maximiliano Curia <maxy@debian.org>  Tue, 17 Jul 2018 11:15:24 +0200
+
+kio-extras (4:17.08.3-2) unstable; urgency=medium
+
+  * Team upload.
+  * Fix small comma vs dot typo in debian/control.
+
+ -- Pino Toscano <pino@debian.org>  Sat, 09 Dec 2017 14:53:18 +0100
+
+kio-extras (4:17.08.3-1) unstable; urgency=medium
+
+  * Team upload.
+  * Upload to unstable.
+  * New upstream release.
+  * Bump Standards-Version to 4.1.2, no changes required.
+  * Simplify watch file, and switch it to https.
+  * Remove debian/meta/cmake-ignore, unused.
+  * Remove unused build dependencies: kinit-dev, libexiv2-dev, libjpeg-dev,
+    libkf5kdelibs4support-dev, and libkf5plasma-dev. (Closes: #880317)
+  * In kio-extras-data, remove the unused ${shlibs:Depends} substvar, and use
+    ${perl:Depends}.
+  * Update lintian overrides.
+  * Limit the qtwebengine5-dev build dependency only to the architectures
+    where it is available: amd64 arm64 armhf i386 mipsel.
+  * Adjust l10npkgs_firstversion_ok to the version where kde-l10n will
+    drop translations.
+
+ -- Pino Toscano <pino@debian.org>  Sat, 09 Dec 2017 09:24:57 +0100
+
+kio-extras (4:17.08.1-1) experimental; urgency=medium
+
+  * New upstream release (17.08.1)
+  * Bump Standards-Version to 4.1.0.
+  * Update upstream metadata
+  * Update build-deps and deps with the info from cmake
+  * Release to experimental
+
+ -- Maximiliano Curia <maxy@debian.org>  Tue, 12 Sep 2017 15:35:51 +0200
+
+kio-extras (4:17.08.1-0neon) xenial; urgency=medium
+
+  * New release
+
+ -- Neon CI <neon@kde.org>  Tue, 05 Sep 2017 14:01:32 +0000
+
+kio-extras (4:17.08.0-0neon) xenial; urgency=medium
+
+  * New release
+
+ -- Neon CI <neon@kde.org>  Thu, 17 Aug 2017 09:36:24 +0000
+
+kio-extras (4:17.04.3-0neon) xenial; urgency=medium
+
+  * New release
+
+ -- Neon CI <neon@kde.org>  Wed, 12 Jul 2017 10:21:31 +0000
+
+kio-extras (4:17.04.2-0neon) xenial; urgency=medium
+
+  * New release
+
+ -- Neon CI <neon@kde.org>  Wed, 07 Jun 2017 12:21:57 +0000
+
+kio-extras (4:17.04.1-0neon) xenial; urgency=medium
+
+  * New release
+
+ -- Neon CI <neon@kde.org>  Thu, 11 May 2017 18:18:42 +0000
+
+kio-extras (4:17.04.0-0neon) xenial; urgency=medium
+
+  * New release
+
+ -- Neon CI <neon@kde.org>  Wed, 19 Apr 2017 13:04:24 +0000
+
+kio-extras (4:16.12.3-0neon) xenial; urgency=medium
+
+  * New release
+
+ -- Neon CI <neon@kde.org>  Wed, 08 Mar 2017 13:48:35 +0000
+
+kio-extras (4:16.12.2-0neon) xenial; urgency=medium
+
+  * New release
+
+ -- Neon CI <neon@kde.org>  Wed, 08 Feb 2017 16:59:37 +0000
+
+kio-extras (4:16.12.1-0neon) xenial; urgency=medium
+
+  * New release
+
+ -- Neon CI <neon@kde.org>  Wed, 11 Jan 2017 13:19:06 +0000
+
+kio-extras (4:16.12.0-0neon) xenial; urgency=medium
+
+  * New release
+
+ -- Neon CI <neon@kde.org>  Wed, 14 Dec 2016 16:27:51 +0000
+
+kio-extras (4:16.08.3-1) unstable; urgency=medium
+
+  * New upstream release (16.08.3)
+
+ -- Maximiliano Curia <maxy@debian.org>  Wed, 23 Nov 2016 21:11:27 +0100
+
+kio-extras (4:16.08.3-0neon) xenial; urgency=medium
+
+  * New release
+
+ -- Neon CI <neon@kde.org>  Mon, 21 Nov 2016 13:53:53 +0000
+
+kio-extras (4:16.08.2-1) unstable; urgency=medium
+
+  [ Maximiliano Curia ]
+  * New upstream release (16.08.2)
+
+  [ Automatic packaging ]
+  * Update build-deps and deps with the info from cmake
+
+ -- Maximiliano Curia <maxy@debian.org>  Mon, 17 Oct 2016 23:33:54 +0200
+
+kio-extras (4:16.08.2-0neon) xenial; urgency=medium
+
+  * New release
+
+ -- Neon CI <neon@kde.org>  Fri, 14 Oct 2016 13:40:21 +0000
+
+kio-extras (4:16.08.1-0neon) xenial; urgency=medium
+
+  * New release
+
+ -- Neon CI <neon@kde.org>  Fri, 16 Sep 2016 13:06:52 +0000
+
+kio-extras (4:16.08.0-0neon) xenial; urgency=medium
+
+  * New release
+
+ -- Neon CI <neon@kde.org>  Wed, 17 Aug 2016 11:48:55 +0000
+
+kio-extras (4:16.04.3-0neon) xenial; urgency=medium
+
+  * New release
+
+ -- Neon CI <neon@kde.org>  Tue, 26 Jul 2016 16:36:34 +0000
+
+kio-extras (4:16.04.2-1) unstable; urgency=medium
+
+  * New upstream release.
+
+ -- Maximiliano Curia <maxy@debian.org>  Wed, 22 Jun 2016 21:09:22 +0200
+
+kio-extras (4:16.04.1-1) unstable; urgency=medium
+
+  [ Automatic packaging ]
+  * Bump Standards-Version to 3.9.8
+  * Update build-deps and deps with the info from cmake
+
+  [ Maximiliano Curia ]
+  * New upstream release (15.12.2).
+  * Replace the "Historical name" ddeb-migration by its "Modern, clearer" replacement dbgsym-migration.
+  * Add upstream metadata (DEP-12)
+  * debian/control: Update Vcs-Browser and Vcs-Git fields
+  * Add missing breaks/replaces against kactivities
+
+ -- Maximiliano Curia <maxy@debian.org>  Sat, 28 May 2016 01:45:47 +0200
+
+kio-extras (4:15.12.1-1) experimental; urgency=medium
+
+  * New upstream release (15.12.0).
+  * New upstream release (15.12.1).
+
+ -- Maximiliano Curia <maxy@debian.org>  Mon, 01 Feb 2016 10:24:19 +0100
+
+kio-extras (4:15.08.3-2) unstable; urgency=medium
+
+  * Team upload.
+  * Drop build-dependency on libslp-dev. (Closes: #815361)
+
+ -- Felix Geyer <fgeyer@debian.org>  Tue, 23 Feb 2016 20:36:37 +0100
+
+kio-extras (4:15.08.3-1) unstable; urgency=medium
+
+  * New upstream release (15.08.3).
+
+ -- Maximiliano Curia <maxy@debian.org>  Wed, 02 Dec 2015 12:40:00 +0100
+
+kio-extras (4:15.08.2-1) unstable; urgency=medium
+
+  * New upstream release (15.08.2).
+
+ -- Maximiliano Curia <maxy@debian.org>  Fri, 16 Oct 2015 08:07:00 +0200
+
+kio-extras (4:15.08.0-1) unstable; urgency=medium
+
+  * New upstream release (15.08.0).
+
+ -- Maximiliano Curia <maxy@debian.org>  Fri, 04 Sep 2015 14:04:38 +0200
+
+kio-extras (4:5.3.2-2) unstable; urgency=medium
+
+  * Add the missing Breaks/Replaces. (Closes: #790522)
+
+ -- Maximiliano Curia <maxy@debian.org>  Fri, 03 Jul 2015 14:07:51 +0200
+
+kio-extras (4:5.3.2-1) unstable; urgency=medium
+
+  * New upstream release (5.3.2).
+
+ -- Maximiliano Curia <maxy@debian.org>  Tue, 30 Jun 2015 21:53:04 +0200
+
+kio-extras (4:5.3.1-0ubuntu1) wily; urgency=medium
+
+  * New upstream release
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Fri, 05 Jun 2015 02:30:32 +0200
+
+kio-extras (4:5.3.1-1) unstable; urgency=medium
+
+  * New upstream release (5.3.0).
+  * New upstream release (5.3.1).
+
+ -- Maximiliano Curia <maxy@debian.org>  Tue, 30 Jun 2015 10:13:05 +0200
+
+kio-extras (4:5.2.2-1) experimental; urgency=medium
+
+  * New upstream release (5.2.1).
+  * New upstream release (5.2.2).
+
+ -- Maximiliano Curia <maxy@debian.org>  Wed, 25 Mar 2015 23:17:41 +0100
+
+kio-extras (4:5.2.2-0ubuntu1) vivid; urgency=medium
+
+  * New upstream release
+
+ -- Scarlett Clark <sgclark@kubuntu.org>  Tue, 24 Mar 2015 07:20:09 -0700
+
+kio-extras (4:5.2.1-0ubuntu1) vivid; urgency=medium
+
+  [ Harald Sitter ]
+  * Fix relationship with kio-mtp to support backports
+
+  [ Scarlett Clark ]
+  * New upstream release
+
+ -- Scarlett Clark <sgclark@kubuntu.org>  Mon, 23 Feb 2015 09:39:55 -0800
+
+kio-extras (4:5.2.0-1) experimental; urgency=medium
+
+  [ Harald Sitter ]
+  * Fix relationship with kio-mtp to support backports
+
+  [ Maximiliano Curia ]
+  * Prepare initial Debian release.
+  * Add myself as Uploader.
+  * Update build dependencies to build against experimental and to
+    follow cmake.
+  * Bump Standards-Version to 3.9.6, no changes needed.
+  * Update copyright information.
+  * Update install files.
+
+ -- Maximiliano Curia <maxy@debian.org>  Tue, 10 Feb 2015 18:36:37 +0100
+
+kio-extras (4:5.2.0-0ubuntu1) vivid; urgency=medium
+
+  * New upstream release
+
+ -- Harald Sitter <sitter@kde.org>  Tue, 27 Jan 2015 14:52:50 +0100
+
+kio-extras (4:5.1.95-0ubuntu3) vivid; urgency=medium
+
+  * Break old version of kio-mtp
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Mon, 19 Jan 2015 14:41:08 +0100
+
+kio-extras (4:5.1.95-0ubuntu2) vivid; urgency=medium
+
+  * Repleace/conflict kio-mtp
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Fri, 16 Jan 2015 11:52:31 +0100
+
+kio-extras (4:5.1.95-0ubuntu1) vivid; urgency=medium
+
+  * New upstream beta release
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Thu, 15 Jan 2015 01:30:10 +0100
+
+kio-extras (4:5.1.2-0ubuntu1) vivid; urgency=medium
+
+  * New upstream release
+  * Remove upstream_CVE-2014-8600.diff
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Mon, 15 Dec 2014 13:20:46 +0100
+
+kio-extras (4:5.1.1-0ubuntu2) vivid; urgency=medium
+
+  * SECURITY UPDATE: Insufficient Input Validation By IO Slaves and
+    Webkit Part
+   - Add upstream_CVE-2014-8600.diff to escape protocol twice: once
+     for i18n, and once for HTML
+   - https://www.kde.org/info/security/advisory-20141113-1.txt
+   - CVE-2014-8600
+   - LP: #1393479
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Tue, 18 Nov 2014 10:08:55 +0100
+
+kio-extras (4:5.1.1-0ubuntu1) vivid; urgency=medium
+
+  * New upstream release.
+
+  [ Harald Sitter ]
+  * Lintian cleanup
+    + Linitian override manpage warning for ktrash5 (we do not generally
+      provide manpages for helper binaries nor for GUI binaries)
+    + Fix a short license name in copyright to enable standard license
+      identification
+
+  [ Scarlett Clark ]
+  * cherry-pick 2e86138c30e820bccc4d13e5329d1008f9ccce1b due to
+    kio trash changes upstream.
+
+  [ Jonathan Riddell ]
+  * New upstream release
+  * New upstream release with fixed tar
+
+ -- Scarlett Clark <sgclark@kubuntu.org>  Mon, 10 Nov 2014 19:44:44 +0100
+
+kio-extras (4:5.0.2-0ubuntu1) utopic; urgency=medium
+
+  [ Harald Sitter ]
+  * switch to new pkg-kde-tools
+
+  [ Scarlett Clark ]
+  * New upstream release
+  * Remove no-human-maintainers lintian-override per ScottK.
+
+ -- Scarlett Clark <sgclark@kubuntu.org>  Wed, 17 Sep 2014 18:15:25 -0700
+
+kio-extras (4:5.0.1-0ubuntu1~ubuntu14.10~ppa2) utopic; urgency=medium
+
+  [ Jonathan Riddell ]
+  * New upstream release
+
+  [ Scarlett Clark ]
+  * Update watch to http://download.kde.org
+
+  [ Jonathan Riddell ]
+  * New upstream bugfix release
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Sun, 10 Aug 2014 15:42:07 +0200
+
+kio-extras (4:4.98.0-0ubuntu1) utopic; urgency=medium
+
+  * New upstream RC release
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Mon, 07 Jul 2014 13:19:32 +0200
+
+kio-extras (4:4.97.0a-0ubuntu1) utopic; urgency=medium
+
+  [ Scarlett Clark ]
+  * Initial release.
+
+  [ Jonathan Riddell ]
+  * New upstream beta release
+
+  [ Scarlett Clark ]
+  * remove patch and use new tar
+  * add optional build depends.
+  * Fix install file
+  * change arch to all data package
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Mon, 09 Jun 2014 10:25:09 +0100

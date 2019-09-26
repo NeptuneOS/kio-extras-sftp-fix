@@ -1,0 +1,65 @@
+Index: kio-extras-18.08.3/sftp/kio_sftp.cpp
+===================================================================
+--- kio-extras-18.08.3.orig/sftp/kio_sftp.cpp	2019-09-15 16:45:36.118868063 +0200
++++ kio-extras-18.08.3/sftp/kio_sftp.cpp	2019-09-15 16:45:36.114868086 +0200
+@@ -47,6 +47,8 @@
+ // you will overflow the 2 byte size variable in a sftp packet.
+ #define MAX_XFER_BUF_SIZE (60 * 1024)
+ 
++#define KSFTP_ISDIR(sb) (sb->type == SSH_FILEXFER_TYPE_DIRECTORY)
++
+ using namespace KIO;
+ extern "C"
+ {
+@@ -1355,11 +1357,7 @@
+   }
+ 
+   if (bOrigExists && !(flags & KIO::Overwrite) && !(flags & KIO::Resume)) {
+-    if (sb->type == SSH_FILEXFER_TYPE_DIRECTORY) {
+-      errorCode = KIO::ERR_DIR_ALREADY_EXIST;
+-    } else {
+-      errorCode = KIO::ERR_FILE_ALREADY_EXIST;
+-    }
++    errorCode = KSFTP_ISDIR(sb) ? KIO::ERR_DIR_ALREADY_EXIST : KIO::ERR_FILE_ALREADY_EXIST;
+     sftp_attributes_free(sb);
+     return sftpProtocol::ServerError;
+   }
+@@ -1970,14 +1968,9 @@
+     return;
+   }
+ 
+-  if (sb->type == SSH_FILEXFER_TYPE_DIRECTORY) {
+-    error(KIO::ERR_DIR_ALREADY_EXIST, path);
+-  } else {
+-    error(KIO::ERR_FILE_ALREADY_EXIST, path);
+-  }
+-
++  auto err = KSFTP_ISDIR(sb) ? KIO::ERR_DIR_ALREADY_EXIST : KIO::ERR_FILE_ALREADY_EXIST;
+   sftp_attributes_free(sb);
+-  return;
++  error(err, path);
+ }
+ 
+ void sftpProtocol::rename(const QUrl& src, const QUrl& dest, KIO::JobFlags flags) {
+@@ -1993,18 +1986,15 @@
+ 
+   sftp_attributes sb = sftp_lstat(mSftp, qdest.constData());
+   if (sb != nullptr) {
++    const bool isDir = KSFTP_ISDIR(sb);
+     if (!(flags & KIO::Overwrite)) {
+-      if (sb->type == SSH_FILEXFER_TYPE_DIRECTORY) {
+-        error(KIO::ERR_DIR_ALREADY_EXIST, dest.url());
+-      } else {
+-        error(KIO::ERR_FILE_ALREADY_EXIST, dest.url());
+-      }
++      error(isDir ? KIO::ERR_DIR_ALREADY_EXIST : KIO::ERR_FILE_ALREADY_EXIST, dest.url());
+       sftp_attributes_free(sb);
+       return;
+     }
+ 
+     // Delete the existing destination file/dir...
+-    if (sb->type == SSH_FILEXFER_TYPE_DIRECTORY) {
++    if (isDir) {
+       if (sftp_rmdir(mSftp, qdest.constData()) < 0) {
+         reportError(dest, sftp_get_error(mSftp));
+         return;

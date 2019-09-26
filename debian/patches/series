@@ -1,0 +1,15 @@
+fix-memory-leak-ssh-session.patch
+sftp-generate-debug-header.patch
+sftp-remove-unused-macros.patch
+sftp-replace-memset-hack-with-cpp.patch
+sftp-use-qenvironmentvariable.patch
+sftp-treat-all-errors-as-errors.patch
+sftp-use-uds-fastinsert-instead-of-old.patch
+sftp-bump-pending-requests-to-128.patch
+sftp-remove-unused-variable.patch
+sftp-use-tcp-nodelay.patch
+sftp-be-backwards-compatible.patch
+sftp-always-emit-finished-on-completion.patch
+sftp-do-not-multifinish-on-close-calls.patch
+sftp-boilerplate-comment-sftpLogin.patch
+sftp-simplify-isDir-handling.patch
